@@ -72,3 +72,4 @@ st.bar_chart(df_importancia.set_index("Indicador"))
 
 
 
+
