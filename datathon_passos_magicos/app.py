@@ -32,9 +32,15 @@ dados = pd.DataFrame(
 if st.button("Prever risco educacional"):
 
     resultado = modelo.predict(dados)
+    probabilidade = modelo.predict_proba(dados)
+
+    risco = probabilidade[0][1] * 100
+
+    st.subheader("Resultado da previsão")
+
+    st.write(f"Probabilidade de risco educacional: **{risco:.2f}%**")
 
     if resultado[0] == 1:
         st.error("⚠️ Aluno em risco educacional")
     else:
-
         st.success("✅ Aluno com desenvolvimento educacional adequado")
