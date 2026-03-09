@@ -1,4 +1,5 @@
 Aplicação disponível em:
+
 https://datathon-paapps-magicos-rducmshvkwcae7n4ghbboj.streamlit.app
 
 Perguntas respondidas, análise exploratória bem como estrutura dos dados foram feitas via Google Collab:
