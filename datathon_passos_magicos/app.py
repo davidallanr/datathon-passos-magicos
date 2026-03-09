@@ -45,5 +45,30 @@ if st.button("Prever risco educacional"):
         st.error("⚠️ Aluno em risco educacional")
     else:
         st.success("✅ Aluno com desenvolvimento educacional adequado")
+        
+        st.subheader("Indicadores que mais influenciam o risco")
+
+importancias = modelo.feature_importances_
+
+features = [
+    "IDA - Desempenho Acadêmico",
+    "IEG - Engajamento",
+    "IPS - Aspectos Psicossociais",
+    "IPP - Indicador Psicopedagógico",
+    "IPV - Ponto de Virada",
+    "INDE - Índice Educacional"
+]
+
+import pandas as pd
+
+df_importancia = pd.DataFrame({
+    "Indicador": features,
+    "Importância": importancias
+})
+
+df_importancia = df_importancia.sort_values(by="Importância", ascending=True)
+
+st.bar_chart(df_importancia.set_index("Indicador"))
+
 
 
