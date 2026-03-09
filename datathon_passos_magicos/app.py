@@ -1,0 +1,36 @@
+import streamlit as st
+import pandas as pd
+import pickle
+
+# carregar modelo
+modelo = pickle.load(open("modelo_risco.pkl", "rb"))
+
+st.title("Previsão de Risco Educacional")
+
+st.write("""
+Aplicação desenvolvida para identificar alunos em risco educacional
+com base nos indicadores analisados no projeto Passos Mágicos.
+""")
+
+st.header("Insira os indicadores do aluno")
+
+ida = st.slider("IDA - Desempenho Acadêmico", 0.0, 10.0, 5.0)
+ieg = st.slider("IEG - Engajamento", 0.0, 10.0, 5.0)
+ips = st.slider("IPS - Aspectos Psicossociais", 0.0, 10.0, 5.0)
+ipp = st.slider("IPP - Indicador Psicopedagógico", 0.0, 10.0, 5.0)
+ipv = st.slider("IPV - Ponto de Virada", 0.0, 10.0, 5.0)
+inde = st.slider("INDE - Índice Educacional", 0.0, 10.0, 5.0)
+
+dados = pd.DataFrame(
+    [[ida, ieg, ips, ipp, ipv, inde]],
+    columns=["IDA_2022","IEG_2022","IPS_2022","IPP_2022","IPV_2022","INDE_2022"]
+)
+
+if st.button("Prever risco educacional"):
+
+    resultado = modelo.predict(dados)
+
+    if resultado[0] == 1:
+        st.error("⚠️ Aluno em risco educacional")
+    else:
+        st.success("✅ Aluno com desenvolvimento educacional adequado")
