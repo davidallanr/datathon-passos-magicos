@@ -70,6 +70,10 @@ df_importancia = df_importancia.sort_values(by="Importância", ascending=True)
 
 st.bar_chart(df_importancia.set_index("Indicador"))
 
+st.markdown("---")
+st.caption("Projeto desenvolvido no Tech Challenge - FIAP | Data Analytics")
+
+
 
 
 
