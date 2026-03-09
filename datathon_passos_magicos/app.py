@@ -1,9 +1,12 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import os
 
-# carregar modelo
-modelo = pickle.load(open("modelo_risco.pkl", "rb"))
+BASE_DIR = os.path.dirname(__file__)
+modelo_path = os.path.join(BASE_DIR, "modelo_risco.pkl")
+
+modelo = pickle.load(open(modelo_path, "rb"))
 
 st.title("Previsão de Risco Educacional")
 
@@ -33,4 +36,5 @@ if st.button("Prever risco educacional"):
     if resultado[0] == 1:
         st.error("⚠️ Aluno em risco educacional")
     else:
+
         st.success("✅ Aluno com desenvolvimento educacional adequado")
