@@ -39,8 +39,10 @@ if st.button("Prever risco educacional"):
     st.subheader("Resultado da previsão")
 
     st.write(f"Probabilidade de risco educacional: **{risco:.2f}%**")
+st.progress(int(risco))
 
     if resultado[0] == 1:
         st.error("⚠️ Aluno em risco educacional")
     else:
         st.success("✅ Aluno com desenvolvimento educacional adequado")
+
